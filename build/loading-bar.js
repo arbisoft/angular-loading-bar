@@ -191,6 +191,7 @@ angular.module('cfp.loadingBar', [])
       var includeSpinner = this.includeSpinner;
       var includeBar = this.includeBar;
       var startSize = this.startSize;
+      var that = this;
 
       /**
        * Inserts the loading bar element into the dom, and sets it to 2%
@@ -232,6 +233,17 @@ angular.module('cfp.loadingBar', [])
         }
 
         _set(startSize);
+      }
+
+      /**
+       * Enable the loading bar later if disable on configuration point
+       * 
+       * @param n any value between 0 and 1
+       */
+      function _enableLoadingBar(){
+        includeBar = true;
+        that.includeBar = true;
+        _start();
       }
 
       /**
@@ -327,6 +339,7 @@ angular.module('cfp.loadingBar', [])
         status           : _status,
         inc              : _inc,
         complete         : _complete,
+        enableLoadingBar : _enableLoadingBar,
         autoIncrement    : this.autoIncrement,
         includeSpinner   : this.includeSpinner,
         latencyThreshold : this.latencyThreshold,
